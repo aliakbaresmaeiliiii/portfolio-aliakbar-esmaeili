@@ -83,7 +83,7 @@ export class HeaderComponent {
     { name: 'Contact', href: '#contact' },
   ];
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
   }

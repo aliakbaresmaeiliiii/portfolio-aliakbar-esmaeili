@@ -83,7 +83,7 @@ import { CommonModule } from '@angular/common';
 export class ExperienceComponent {
   experiences = [
     {
-      position: 'Full Stack Developer',
+      position: 'Senior Software Engineer',
       company: 'Beed Education Adventures',
       location: 'Kuala Lumpur, Malaysia',
       duration: '06/2023 – Present',

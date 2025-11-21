@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "clinic-55f53",
-    "portfolio-aliakbar-esmaeili": "clinic-55f53"
+    "portfolio-aliakbar-esmaeili": "clinic-55f53",
+    "production": "clinic-55f53"
   },
   "targets": {},
   "etags": {}
