@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve": "ng serve --port 4200"
+    "serve": "ng serve --port 4200",
+    "deploy": "ng build --configuration production && firebase deploy"
   },
   "dependencies": {
     "@angular/animations": "^21.0.0",
