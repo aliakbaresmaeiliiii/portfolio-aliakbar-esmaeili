@@ -1,10 +1,9 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { Component, signal } from "@angular/core";
 
 @Component({
   selector: "app-projects",
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <section id="projects" class="py-20">
       <div class="container mx-auto px-6">
@@ -24,61 +23,61 @@ import { CommonModule } from "@angular/common";
 
           <!-- Projects Grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              *ngFor="let project of projects"
-              class="glass-effect rounded-xl overflow-hidden card-hover group"
-            >
-              <!-- Project Image -->
-              <div
-                class="h-48 bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center"
-              >
-                <span class="text-6xl">{{ project.icon }}</span>
-              </div>
-
-              <!-- Project Content -->
-              <div class="p-6">
-                <h3
-                  class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300"
+            @for (project of projects(); track project.title) {
+              <div class="glass-effect rounded-xl overflow-hidden card-hover group">
+                <!-- Project Image -->
+                <div
+                  class="h-48 bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center"
                 >
-                  {{ project.title }}
-                </h3>
-                <p class="text-gray-300 mb-4 text-sm leading-relaxed">
-                  {{ project.description }}
-                </p>
-
-                <!-- Technologies -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span
-                    *ngFor="let tech of project.technologies"
-                    class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-xs"
-                  >
-                    {{ tech }}
-                  </span>
+                  <span class="text-6xl">{{ project.icon }}</span>
                 </div>
 
-                <!-- Project Links -->
-                <div class="flex space-x-4">
-                  <a
-                    *ngIf="project.liveUrl"
-                    [href]="project.liveUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-primary text-sm px-4 py-2 hover:scale-105 transition-transform duration-300"
+                <!-- Project Content -->
+                <div class="p-6">
+                  <h3
+                    class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300"
                   >
-                    Live Demo
-                  </a>
-                  <a
-                    *ngIf="project.githubUrl"
-                    [href]="project.githubUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-secondary text-sm px-4 py-2 hover:scale-105 transition-transform duration-300"
-                  >
-                    GitHub
-                  </a>
+                    {{ project.title }}
+                  </h3>
+                  <p class="text-gray-300 mb-4 text-sm leading-relaxed">
+                    {{ project.description }}
+                  </p>
+
+                  <!-- Technologies -->
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    @for (tech of project.technologies; track tech) {
+                      <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-xs">
+                        {{ tech }}
+                      </span>
+                    }
+                  </div>
+
+                  <!-- Project Links -->
+                  <div class="flex space-x-4">
+                    @if (project.liveUrl) {
+                      <a
+                        [href]="project.liveUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-primary text-sm px-4 py-2 hover:scale-105 transition-transform duration-300"
+                      >
+                        Live Demo
+                      </a>
+                    }
+                    @if (project.githubUrl) {
+                      <a
+                        [href]="project.githubUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-secondary text-sm px-4 py-2 hover:scale-105 transition-transform duration-300"
+                      >
+                        GitHub
+                      </a>
+                    }
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           </div>
 
           <!-- View More Projects -->
@@ -100,7 +99,7 @@ import { CommonModule } from "@angular/common";
   styles: [],
 })
 export class ProjectsComponent {
-  projects = [
+  projects = signal([
     {
       title: "Gahvareh",
       description:
@@ -161,5 +160,5 @@ export class ProjectsComponent {
       liveUrl: "https://blog-cms-demo.com",
       githubUrl: "https://github.com/aliakbaresmaeiliiii/3d-effect",
     },
-  ];
+  ]);
 }
