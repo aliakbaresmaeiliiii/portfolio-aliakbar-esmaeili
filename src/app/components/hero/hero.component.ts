@@ -88,12 +88,18 @@ import {
             >
               View My Work
             </a>
-            <a
-              routerLink="/resume"
+            <button
+              (click)="downloadCV()"
               class="btn-secondary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
             >
               📄 Download CV
-            </a>
+            </button>
+            <button
+              (click)="downloadCoverLetter()"
+              class="btn-secondary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+            >
+              📝 Download Cover Letter
+            </button>
           </div>
 
           <!-- Social Links -->
@@ -159,4 +165,18 @@ import {
   ],
   styles: [],
 })
-export class HeroComponent {}
+export class HeroComponent {
+  downloadCV(): void {
+    const link = document.createElement('a');
+    link.href = 'assets/Aliakbar-Esmaeili-Resume2025.pdf';
+    link.download = 'Aliakbar-Esmaeili-Resume2025.pdf';
+    link.click();
+  }
+
+  downloadCoverLetter(): void {
+    const link = document.createElement('a');
+    link.href = 'assets/Cover_Letter_Aliakbar_Esmaeili.pdf';
+    link.download = 'Cover_Letter_Aliakbar_Esmaeili.pdf';
+    link.click();
+  }
+}
