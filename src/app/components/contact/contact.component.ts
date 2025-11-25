@@ -1,25 +1,31 @@
-import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { Component, inject, signal, computed } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { EmailService } from "../../services/email.service";
 
+interface ContactForm {
+  name: FormControl<string>;
+  email: FormControl<string>;
+  subject: FormControl<string>;
+  message: FormControl<string>;
+}
+
 @Component({
-  selector: "app-contact",
+  selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [ReactiveFormsModule],
   template: `
-    <section id="contact" class="py-20 bg-dark-800/50">
+    <section id="contact" class="py-20">
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
           <!-- Section Header -->
           <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--text-primary)">
               Get In <span class="gradient-text">Touch</span>
             </h2>
             <div
               class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"
             ></div>
-            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+            <p class="mt-4 max-w-2xl mx-auto" style="color: var(--text-secondary)">
               Ready to work together? Let's discuss your next project!
             </p>
           </div>
@@ -28,10 +34,10 @@ import { EmailService } from "../../services/email.service";
             <!-- Contact Information -->
             <div class="space-y-8">
               <div
-                class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+                class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:border-blue-500/30"
               >
-                <h3 class="text-xl font-bold text-white mb-4">Let's Connect</h3>
-                <p class="text-gray-300 mb-6">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary)">Let's Connect</h3>
+                <p class="mb-6" style="color: var(--text-secondary)">
                   I'm always interested in new opportunities and exciting
                   projects. Whether you have a question or just want to say hi,
                   feel free to reach out!
@@ -42,7 +48,7 @@ import { EmailService } from "../../services/email.service";
                   <div class="flex items-center space-x-4">
                     <span class="text-2xl">📧</span>
                     <div>
-                      <p class="text-white font-semibold">Email</p>
+                      <p class="font-semibold" style="color: var(--text-primary)">Email</p>
                       <a
                         href="mailto:Aliakbaresmaeili98@gmail.com"
                         class="text-blue-400 hover:text-blue-300 transition-colors duration-300"
@@ -55,7 +61,7 @@ import { EmailService } from "../../services/email.service";
                   <div class="flex items-center space-x-4">
                     <span class="text-2xl">📱</span>
                     <div>
-                      <p class="text-white font-semibold">Phone</p>
+                      <p class="font-semibold" style="color: var(--text-primary)">Phone</p>
                       <a
                         href="tel:+989358200532"
                         class="text-blue-400 hover:text-blue-300 transition-colors duration-300"
@@ -75,15 +81,15 @@ import { EmailService } from "../../services/email.service";
                   <div class="flex items-center space-x-4">
                     <span class="text-2xl">📍</span>
                     <div>
-                      <p class="text-white font-semibold">Location</p>
-                      <p class="text-gray-300">Selangor, Malaysia</p>
+                      <p class="font-semibold" style="color: var(--text-primary)">Location</p>
+                      <p style="color: var(--text-secondary)">Selangor, Malaysia</p>
                     </div>
                   </div>
                 </div>
 
                 <!-- Social Links -->
                 <div class="mt-8">
-                  <h4 class="text-white font-semibold mb-4">Follow Me</h4>
+                  <h4 class="font-semibold mb-4" style="color: var(--text-primary)">Follow Me</h4>
                   <div class="flex space-x-4">
                     <a
                       href="https://github.com/aliakbaresmaeiliiii"
@@ -112,16 +118,16 @@ import { EmailService } from "../../services/email.service";
               </div>
 
               <!-- Availability Status -->
-              <div class="glass-effect p-6 rounded-xl">
+              <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:shadow-xl transition-all duration-300">
                 <div class="flex items-center space-x-3 mb-4">
                   <div
                     class="w-3 h-3 bg-green-500 rounded-full animate-pulse"
                   ></div>
-                  <span class="text-white font-semibold"
+                  <span class="font-semibold" style="color: var(--text-primary)"
                     >Available for Work</span
                   >
                 </div>
-                <p class="text-gray-300 text-sm">
+                <p class="text-sm" style="color: var(--text-secondary)">
                   Currently accepting new projects and opportunities. Response
                   time: Usually within 24 hours.
                 </p>
@@ -129,111 +135,119 @@ import { EmailService } from "../../services/email.service";
             </div>
 
             <!-- Contact Form -->
-            <div class="glass-effect p-8 rounded-xl">
-              <h3 class="text-xl font-bold text-white mb-6">Send a Message</h3>
+            <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:shadow-xl transition-all duration-300">
+              <h3 class="text-xl font-bold mb-6" style="color: var(--text-primary)">Send a Message</h3>
 
               <!-- Success Message -->
-              <div
-                *ngIf="showSuccessMessage"
-                class="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg"
-              >
-                <p class="text-green-400 font-semibold">
-                  ✓ Message sent successfully!
-                </p>
-                <p class="text-green-300 text-sm mt-1">
-                  I'll get back to you soon.
-                </p>
-              </div>
+              @if (showSuccessMessage()) {
+                <div class="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-lg">
+                  <p class="text-green-400 font-semibold">
+                    ✓ Message sent successfully!
+                  </p>
+                  <p class="text-green-300 text-sm mt-1">
+                    I'll get back to you soon.
+                  </p>
+                </div>
+              }
 
               <!-- Error Message -->
-              <div
-                *ngIf="showErrorMessage"
-                class="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg"
-              >
-                <p class="text-red-400 font-semibold">
-                  ✗ Failed to send message
-                </p>
-                <p class="text-red-300 text-sm mt-1">
-                  Please try again or email me directly.
-                </p>
-              </div>
+              @if (showErrorMessage()) {
+                <div class="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg">
+                  <p class="text-red-400 font-semibold">
+                    ✗ Failed to send message
+                  </p>
+                  <p class="text-red-300 text-sm mt-1">
+                    Please try again or email me directly.
+                  </p>
+                </div>
+              }
 
-              <form
-                (ngSubmit)="onSubmit()"
-                #contactForm="ngForm"
-                class="space-y-6"
-              >
+              <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
                 <div>
-                  <label for="name" class="block text-white font-semibold mb-2"
-                    >Name</label
+                  <label for="name" class="block font-semibold mb-3" style="color: var(--text-primary)"
+                    >Full Name *</label
                   >
                   <input
                     type="text"
                     id="name"
-                    name="name"
-                    [(ngModel)]="formData.name"
-                    required
-                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
-                    placeholder="Your name"
+                    formControlName="name"
+                    class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-xl transition-all duration-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    style="color: var(--text-primary); background-color: var(--bg-secondary); border-color: var(--text-tertiary);"
+                    placeholder="Enter your full name"
                   />
+                  @if (contactForm.controls.name.invalid && contactForm.controls.name.touched) {
+                    <p class="text-red-400 text-sm mt-2">Please enter your name</p>
+                  }
                 </div>
 
                 <div>
-                  <label for="email" class="block text-white font-semibold mb-2"
-                    >Email</label
+                  <label for="email" class="block font-semibold mb-3" style="color: var(--text-primary)"
+                    >Email Address *</label
                   >
                   <input
                     type="email"
                     id="email"
-                    name="email"
-                    [(ngModel)]="formData.email"
-                    required
-                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
+                    formControlName="email"
+                    class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-xl transition-all duration-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    style="color: var(--text-primary); background-color: var(--bg-secondary); border-color: var(--text-tertiary);"
                     placeholder="your.email@example.com"
                   />
+                  @if (contactForm.controls.email.invalid && contactForm.controls.email.touched) {
+                    <p class="text-red-400 text-sm mt-2">Please enter a valid email address</p>
+                  }
                 </div>
 
                 <div>
                   <label
                     for="subject"
-                    class="block text-white font-semibold mb-2"
-                    >Subject</label
+                    class="block font-semibold mb-3" style="color: var(--text-primary)"
+                    >Subject *</label
                   >
                   <input
                     type="text"
                     id="subject"
-                    name="subject"
-                    [(ngModel)]="formData.subject"
-                    required
-                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300"
-                    placeholder="What's this about?"
+                    formControlName="subject"
+                    class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-xl transition-all duration-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    style="color: var(--text-primary); background-color: var(--bg-secondary); border-color: var(--text-tertiary);"
+                    placeholder="What would you like to discuss?"
                   />
+                  @if (contactForm.controls.subject.invalid && contactForm.controls.subject.touched) {
+                    <p class="text-red-400 text-sm mt-2">Please enter a subject</p>
+                  }
                 </div>
 
                 <div>
                   <label
                     for="message"
-                    class="block text-white font-semibold mb-2"
-                    >Message</label
+                    class="block font-semibold mb-3" style="color: var(--text-primary)"
+                    >Message *</label
                   >
                   <textarea
                     id="message"
-                    name="message"
-                    [(ngModel)]="formData.message"
-                    required
-                    rows="5"
-                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 resize-none"
-                    placeholder="Tell me about your project or just say hello!"
+                    formControlName="message"
+                    rows="6"
+                    class="w-full px-4 py-4 bg-white/5 border border-white/20 rounded-xl transition-all duration-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-none"
+                    style="color: var(--text-primary); background-color: var(--bg-secondary); border-color: var(--text-tertiary);"
+                    placeholder="Tell me about your project, timeline, budget, or any specific requirements..."
                   ></textarea>
+                  @if (contactForm.controls.message.invalid && contactForm.controls.message.touched) {
+                    <p class="text-red-400 text-sm mt-2">Please enter your message</p>
+                  }
                 </div>
 
                 <button
                   type="submit"
-                  [disabled]="!contactForm.form.valid || isSubmitting"
-                  class="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform duration-300"
+                  [disabled]="!contactForm.valid || isSubmitting()"
+                  class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-lg inline-flex items-center justify-center gap-3"
                 >
-                  <span *ngIf="!isSubmitting">Send Message</span>
-                  <span *ngIf="isSubmitting">Sending...</span>
+                  @if (!isSubmitting()) {
+                    <span>📧 Send Message</span>
+                  } @else {
+                    <span class="flex items-center gap-2">
+                      <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
+                    </span>
+                  }
                 </button>
               </form>
             </div>
@@ -245,57 +259,66 @@ import { EmailService } from "../../services/email.service";
   styles: [],
 })
 export class ContactComponent {
-  isSubmitting = false;
-  showSuccessMessage = false;
-  showErrorMessage = false;
+  private emailService = inject(EmailService);
 
-  formData = {
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  };
+  // Signal-based state management
+  isSubmitting = signal(false);
+  showSuccessMessage = signal(false);
+  showErrorMessage = signal(false);
 
-  constructor(private emailService: EmailService) {}
+  // Signal form with typed controls
+  contactForm = new FormGroup<ContactForm>({
+    name: new FormControl('', { 
+      nonNullable: true, 
+      validators: [Validators.required] 
+    }),
+    email: new FormControl('', { 
+      nonNullable: true, 
+      validators: [Validators.required, Validators.email] 
+    }),
+    subject: new FormControl('', { 
+      nonNullable: true, 
+      validators: [Validators.required] 
+    }),
+    message: new FormControl('', { 
+      nonNullable: true, 
+      validators: [Validators.required] 
+    }),
+  });
 
   async onSubmit() {
-    if (this.isSubmitting) return;
+    if (this.isSubmitting() || this.contactForm.invalid) return;
 
-    this.isSubmitting = true;
-    this.showSuccessMessage = false;
-    this.showErrorMessage = false;
+    this.isSubmitting.set(true);
+    this.showSuccessMessage.set(false);
+    this.showErrorMessage.set(false);
 
     try {
-      const success = await this.emailService.sendEmail(this.formData);
+      const formValue = this.contactForm.getRawValue();
+      const success = await this.emailService.sendEmail(formValue);
 
       if (success) {
-        this.showSuccessMessage = true;
-        // Reset form
-        this.formData = {
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        };
+        this.showSuccessMessage.set(true);
+        this.contactForm.reset();
 
         // Hide success message after 5 seconds
         setTimeout(() => {
-          this.showSuccessMessage = false;
+          this.showSuccessMessage.set(false);
         }, 5000);
       } else {
-        this.showErrorMessage = true;
+        this.showErrorMessage.set(true);
         setTimeout(() => {
-          this.showErrorMessage = false;
+          this.showErrorMessage.set(false);
         }, 5000);
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      this.showErrorMessage = true;
+      this.showErrorMessage.set(true);
       setTimeout(() => {
-        this.showErrorMessage = false;
+        this.showErrorMessage.set(false);
       }, 5000);
     } finally {
-      this.isSubmitting = false;
+      this.isSubmitting.set(false);
     }
   }
 }

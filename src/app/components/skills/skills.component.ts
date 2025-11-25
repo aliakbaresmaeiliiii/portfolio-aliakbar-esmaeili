@@ -17,13 +17,13 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
             animationType="fade-in"
             [animationDuration]="800"
           >
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--text-primary)">
               My <span class="gradient-text">Skills</span>
             </h2>
             <div
               class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"
             ></div>
-            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+            <p class="mt-4 max-w-2xl mx-auto" style="color: var(--text-secondary)">
               Technologies and tools I've mastered over 9+ years of development
               experience
             </p>
@@ -33,28 +33,30 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Frontend Technologies -->
             <div
-              class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+              class="skill-card bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:border-blue-500/30"
               appScrollAnimation
               animationType="slide-up"
               [animationDuration]="800"
             >
-              <div class="flex items-center mb-4">
-                <span class="text-2xl mr-3">🎨</span>
-                <h3 class="text-xl font-semibold text-white">Frontend</h3>
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mr-4">
+                  <span class="text-2xl">🎨</span>
+                </div>
+                <h3 class="text-xl font-bold" style="color: var(--text-primary)">Frontend</h3>
               </div>
-              <div class="space-y-3">
+              <div class="space-y-4">
                 <div
                   *ngFor="let skill of frontendSkills"
                   class="flex items-center justify-between"
                 >
-                  <span class="text-gray-300">{{ skill.name }}</span>
+                  <span style="color: var(--text-secondary)">{{ skill.name }}</span>
                   <div class="flex space-x-1">
                     <div
                       *ngFor="let i of [1, 2, 3, 4, 5]"
                       [class]="
                         i <= skill.level
-                          ? 'w-2 h-2 bg-blue-500 rounded-full'
-                          : 'w-2 h-2 bg-gray-600 rounded-full'
+                          ? 'w-3 h-2 bg-blue-500 rounded-full'
+                          : 'w-3 h-2 bg-gray-400/50 rounded-full'
                       "
                     ></div>
                   </div>
@@ -64,29 +66,31 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
 
             <!-- Backend Technologies -->
             <div
-              class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+              class="skill-card bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:border-purple-500/30"
               appScrollAnimation
               animationType="slide-up"
               [animationDuration]="800"
               [animationDelay]="100"
             >
-              <div class="flex items-center mb-4">
-                <span class="text-2xl mr-3">⚙️</span>
-                <h3 class="text-xl font-semibold text-white">Backend</h3>
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mr-4">
+                  <span class="text-2xl">⚙️</span>
+                </div>
+                <h3 class="text-xl font-bold" style="color: var(--text-primary)">Backend</h3>
               </div>
-              <div class="space-y-3">
+              <div class="space-y-4">
                 <div
                   *ngFor="let skill of backendSkills"
                   class="flex items-center justify-between"
                 >
-                  <span class="text-gray-300">{{ skill.name }}</span>
+                  <span style="color: var(--text-secondary)">{{ skill.name }}</span>
                   <div class="flex space-x-1">
                     <div
                       *ngFor="let i of [1, 2, 3, 4, 5]"
                       [class]="
                         i <= skill.level
-                          ? 'w-2 h-2 bg-purple-500 rounded-full'
-                          : 'w-2 h-2 bg-gray-600 rounded-full'
+                          ? 'w-3 h-2 bg-purple-500 rounded-full'
+                          : 'w-3 h-2 bg-gray-400/50 rounded-full'
                       "
                     ></div>
                   </div>
@@ -96,29 +100,31 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
 
             <!-- Tools & Others -->
             <div
-              class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+              class="skill-card bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:border-green-500/30"
               appScrollAnimation
               animationType="slide-up"
               [animationDuration]="800"
               [animationDelay]="200"
             >
-              <div class="flex items-center mb-4">
-                <span class="text-2xl mr-3">🛠️</span>
-                <h3 class="text-xl font-semibold text-white">Tools & Others</h3>
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mr-4">
+                  <span class="text-2xl">🛠️</span>
+                </div>
+                <h3 class="text-xl font-bold" style="color: var(--text-primary)">Tools & Others</h3>
               </div>
-              <div class="space-y-3">
+              <div class="space-y-4">
                 <div
                   *ngFor="let skill of toolsSkills"
                   class="flex items-center justify-between"
                 >
-                  <span class="text-gray-300">{{ skill.name }}</span>
+                  <span style="color: var(--text-secondary)">{{ skill.name }}</span>
                   <div class="flex space-x-1">
                     <div
                       *ngFor="let i of [1, 2, 3, 4, 5]"
                       [class]="
                         i <= skill.level
-                          ? 'w-2 h-2 bg-green-500 rounded-full'
-                          : 'w-2 h-2 bg-gray-600 rounded-full'
+                          ? 'w-3 h-2 bg-green-500 rounded-full'
+                          : 'w-3 h-2 bg-gray-400/50 rounded-full'
                       "
                     ></div>
                   </div>
@@ -135,13 +141,14 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
             [animationDuration]="800"
             [animationDelay]="300"
           >
-            <h3 class="text-2xl font-bold text-white text-center mb-8">
+            <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--text-primary)">
               Additional Expertise
             </h3>
             <div class="flex flex-wrap justify-center gap-4">
               @for(skill of additionalSkills; track $index){
               <span
-                class="glass-effect px-4 py-2 rounded-full text-gray-300 hover:text-white hover:scale-105 transition-all duration-300"
+                class="bg-white/10 backdrop-blur-lg border border-white/10 px-4 py-2 rounded-full hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                style="color: var(--text-secondary)"
               >
                 {{ skill }}
               </span>

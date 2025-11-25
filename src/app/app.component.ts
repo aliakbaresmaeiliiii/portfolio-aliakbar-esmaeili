@@ -18,7 +18,8 @@ import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.com
   ],
   template: `
     <div
-      class="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900"
+      class="min-h-screen"
+      [style.background]="'var(--bg-gradient)'"
     >
       <app-theme-toggle></app-theme-toggle>
       <app-header></app-header>

@@ -1,117 +1,28 @@
-/* Smooth theme transition */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
+/* Tailwind v4 Import */
+@import "tailwindcss";
+
+/* Essential custom styles */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  
+  /* Light theme colors */
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7fafc;
+  --bg-gradient: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: "Inter", system-ui, sans-serif;
-    background: linear-gradient(
-      135deg,
-      var(--bg-primary) 0%,
-      var(--bg-secondary) 100%
-    );
-    color: var(--text-primary);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-@layer components {
-  .glass-effect {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent;
-  }
-
-  .card-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .card-hover:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 25px -5px var(--shadow-color),
-      0 10px 10px -5px var(--shadow-color);
-  }
-
-  .btn-primary {
-    @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105;
-  }
-
-  .btn-secondary {
-    border: 1px solid var(--glass-border);
-    color: var(--text-primary);
-    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105;
-  }
-
-  .btn-secondary:hover {
-    background: var(--glass-bg);
-  }
-}
-
-/* Override Tailwind text colors for theme support */
-.text-white {
-  color: var(--text-primary) !important;
-}
-
-.text-gray-300 {
-  color: var(--text-secondary) !important;
-}
-
-.text-gray-400,
-.text-gray-500 {
-  color: var(--text-tertiary) !important;
-}
-
-/* Form input styling for both themes */
-input[type="text"],
-input[type="email"],
-textarea {
-  background: var(--glass-bg) !important;
-  border: 2px solid var(--glass-border) !important;
-  color: var(--text-primary) !important;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-  border-color: var(--accent-blue) !important;
-  outline: none !important;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--text-tertiary) !important;
-  opacity: 0.6;
-}
-
-/* Light theme specific input adjustments */
-:root.light {
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    background: rgba(255, 255, 255, 0.5) !important;
-    border: 2px solid rgba(0, 0, 0, 0.2) !important;
-  }
-
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-    background: rgba(255, 255, 255, 0.8) !important;
-    border-color: var(--accent-blue) !important;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
-  }
+/* Dark theme colors */
+.dark {
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #a0aec0;
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-gradient: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
 }
 
 /* Custom scrollbar */
@@ -120,143 +31,56 @@ textarea::placeholder {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-blue);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-purple);
+  background: linear-gradient(135deg, #764ba2, #667eea);
 }
 
-/* Selection color */
+/* Selection styling */
 ::selection {
-  background: var(--accent-blue);
-  color: white;
+  background: rgba(102, 126, 234, 0.3);
+  color: #1a202c;
 }
 
-/* Angular specific styles */
+/* Smooth transitions for theme switching */
 * {
-  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Performance optimizations */
-.profile-image-container,
-.card-hover,
-.glass-effect {
-  will-change: transform;
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Animation classes for Angular animations */
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-out;
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.5s ease-out;
-}
-
-.slide-in-right {
-  animation: slideInRight 0.5s ease-out;
-}
-
-/* Pulse animation for background elements */
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 0.6;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
     transform: scale(1);
   }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 8s ease-in-out infinite;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
 }
 
-/* Keyframe animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Smooth transitions for all interactive elements */
-a,
-button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Light theme specific adjustments */
-:root.light {
-  .glass-effect {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-
-  .card-hover:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-      0 10px 10px -5px rgba(0, 0, 0, 0.1);
-  }
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  html {
-    scroll-behavior: auto;
-  }
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out;
 }

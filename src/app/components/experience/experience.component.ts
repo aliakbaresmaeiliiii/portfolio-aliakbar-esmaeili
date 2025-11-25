@@ -7,7 +7,7 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
   standalone: true,
   imports: [CommonModule, ScrollAnimationDirective],
   template: `
-    <section id="experience" class="py-20 bg-dark-800/50">
+    <section id="experience" class="py-20">
       <div class="container mx-auto px-6">
         <div class="max-w-4xl mx-auto">
           <!-- Section Header -->
@@ -17,13 +17,13 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
             animationType="fade-in"
             [animationDuration]="800"
           >
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--text-primary)">
               Work <span class="gradient-text">Experience</span>
             </h2>
             <div
               class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"
             ></div>
-            <p class="text-gray-400 mt-4">
+            <p class="mt-4" style="color: var(--text-secondary)">
               9+ years of professional development experience
             </p>
           </div>
@@ -46,33 +46,34 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
             >
               <!-- Timeline Dot -->
               <div
-                class="absolute left-6 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full border-4 border-dark-800"
+                class="absolute left-6 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full border-4"
+                style="border-color: var(--bg-primary)"
               ></div>
 
               <!-- Experience Card -->
-              <div class="glass-effect p-6 rounded-xl">
+              <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 hover:shadow-xl transition-all duration-300">
                 <div
                   class="flex flex-col md:flex-row md:items-center md:justify-between mb-4"
                 >
                   <div>
-                    <h3 class="text-xl font-bold text-white mb-1">
+                    <h3 class="text-xl font-bold mb-1" style="color: var(--text-primary)">
                       {{ exp.position }}
                     </h3>
                     <p class="text-blue-400 font-semibold">{{ exp.company }}</p>
-                    <p class="text-gray-500 text-sm">{{ exp.location }}</p>
+                    <p class="text-sm" style="color: var(--text-tertiary)">{{ exp.location }}</p>
                   </div>
-                  <span class="text-gray-400 text-sm mt-2 md:mt-0">{{
+                  <span class="text-sm mt-2 md:mt-0" style="color: var(--text-secondary)">{{
                     exp.duration
                   }}</span>
                 </div>
 
-                <p class="text-gray-300 mb-4">{{ exp.description }}</p>
+                <p class="mb-4" style="color: var(--text-secondary)">{{ exp.description }}</p>
 
                 <!-- Technologies Used -->
                 <div class="flex flex-wrap gap-2">
                   <span
                     *ngFor="let tech of exp.technologies"
-                    class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm"
+                    class="px-3 py-1 bg-blue-500/20 text-blue-500 rounded-full text-sm"
                   >
                     {{ tech }}
                   </span>
@@ -80,13 +81,14 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
 
                 <!-- Key Achievements -->
                 <div class="mt-4">
-                  <h4 class="text-white font-semibold mb-2">
+                  <h4 class="font-semibold mb-2" style="color: var(--text-primary)">
                     Key Achievements:
                   </h4>
                   <ul class="list-disc list-inside space-y-1">
                     <li
                       *ngFor="let achievement of exp.achievements"
-                      class="text-gray-300 text-sm"
+                      class="text-sm"
+                      style="color: var(--text-secondary)"
                     >
                       {{ achievement }}
                     </li>
@@ -103,17 +105,17 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
             animationType="zoom-in"
             [animationDuration]="800"
           >
-            <h3 class="text-2xl font-bold text-white text-center mb-8">
+            <h3 class="text-2xl font-bold text-center mb-8" style="color: var(--text-primary)">
               Education
             </h3>
-            <div class="glass-effect p-6 rounded-xl text-center">
-              <h4 class="text-xl font-semibold text-white mb-2">
+            <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 text-center hover:shadow-xl transition-all duration-300">
+              <h4 class="text-xl font-semibold mb-2" style="color: var(--text-primary)">
                 {{ education.degree }}
               </h4>
               <p class="text-blue-400 font-semibold mb-2">
                 {{ education.institution }}
               </p>
-              <p class="text-gray-400">{{ education.year }}</p>
+              <p style="color: var(--text-secondary)">{{ education.year }}</p>
             </div>
           </div>
         </div>

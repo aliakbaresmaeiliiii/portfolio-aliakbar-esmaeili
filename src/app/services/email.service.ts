@@ -12,11 +12,9 @@ export interface EmailData {
   providedIn: "root",
 })
 export class EmailService {
-  // EmailJS Configuration
-  // TODO: Replace these with your actual EmailJS credentials
-  private readonly SERVICE_ID = "service_af4fvul"; // Get from EmailJS dashboard
-  private readonly TEMPLATE_ID = "template_4bde5np"; // Get from EmailJS dashboard
-  private readonly PUBLIC_KEY = "KMMhL2FGD7q863z7R"; // Get from EmailJS dashboard
+  private readonly SERVICE_ID = "service_af4fvul"; 
+  private readonly TEMPLATE_ID = "template_uzok7m5"; 
+  private readonly PUBLIC_KEY = "KMMhL2FGD7q863z7R"; 
 
   constructor() {
     // Initialize EmailJS with your public key
@@ -30,7 +28,7 @@ export class EmailService {
         from_email: data.email,
         subject: data.subject,
         message: data.message,
-        to_email: "Aliakbaresmaeili98@gmail.com", // Your Gmail address
+        to_email: "Aliakbaresmaeili98@gmail.com", 
       };
 
       const response = await emailjs.send(

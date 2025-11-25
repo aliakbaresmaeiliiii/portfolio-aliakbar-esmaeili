@@ -103,28 +103,22 @@ import { ScrollService } from "../../services/scroll.service";
           >
             <a
               href="#contact"
-              class="btn-primary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+              class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg inline-flex items-center justify-center gap-3"
             >
-              Get In Touch
+              📧 Get In Touch
             </a>
             <a
               href="#projects"
-              class="btn-secondary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+              class="bg-gray-700 backdrop-blur-lg border border-white/20 hover:border-white/40 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg inline-flex items-center justify-center gap-3"
             >
-              View My Work
+              💼 View My Work
             </a>
-            <button
-              (click)="downloadCV()"
-              class="btn-secondary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+            <a
+              routerLink="/resume"
+              class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg inline-flex items-center justify-center gap-3"
             >
-              📄 Download CV
-            </button>
-            <button
-              (click)="downloadCoverLetter()"
-              class="btn-secondary inline-flex items-center gap-2 hover:scale-105 transition-transform duration-300"
-            >
-              📝 Download Cover Letter
-            </button>
+              📄 View Resume
+            </a>
           </div>
 
           <!-- Social Links -->
