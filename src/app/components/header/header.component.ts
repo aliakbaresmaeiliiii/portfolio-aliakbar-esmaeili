@@ -1,4 +1,4 @@
-import { Component, HostListener, signal, effect } from "@angular/core";
+import { Component, HostListener, signal } from "@angular/core";
 import { ThemeToggleComponent } from "../theme-toggle/theme-toggle.component";
 import {
   trigger,
@@ -20,11 +20,29 @@ import {
     >
       <nav class="container mx-auto px-6 py-3">
         <div class="flex items-center justify-between">
-          <!-- Logo -->
-          <div
-            class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 cursor-pointer hover:from-blue-600 hover:to-purple-700"
-          >
-            Aliakbar Esmaeili
+          <!-- Logo with Profile Image -->
+          <div class="flex items-center space-x-3">
+            <!-- Profile Image -->
+            <div 
+              class="relative w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500/30 transition-all duration-300 hover:border-blue-500 hover:scale-105 group"
+              [class]="isScrolled() ? 'w-8 h-8' : 'w-10 h-10'"
+            >
+              <img 
+                src="assets/IMG_4810.JPG" 
+                alt="Aliakbar Esmaeili"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              <!-- Image glow effect -->
+              <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <!-- Name -->
+            <div
+              class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-300 cursor-pointer hover:from-blue-600 hover:to-purple-700"
+              [class]="isScrolled() ? 'text-xl' : 'text-2xl'"
+            >
+              Aliakbar Esmaeili
+            </div>
           </div>
 
           <!-- Desktop Navigation -->
@@ -49,38 +67,9 @@ import {
               </a>
             }
             
-            <!-- Toggle Buttons Container -->
-            <div class="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
-              <!-- Theme Toggle -->
+            <!-- Theme Toggle -->
+            <div class="ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
               <app-theme-toggle />
-              
-              <!-- Language Toggle -->
-              <button
-                (click)="toggleLanguage()"
-                [attr.aria-label]="isEnglish() ? 'Switch to Persian' : 'Switch to English'"
-                class="relative inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 hover:scale-110 group"
-                type="button"
-              >
-                <span
-                  class="text-lg transition-transform duration-300 group-hover:scale-110"
-                >
-                  {{ isEnglish() ? 'EN' : 'FA' }}
-                </span>
-
-                <!-- Tooltip -->
-                <div
-                  class="absolute -top-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                >
-                  <div
-                    class="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap"
-                  >
-                    {{ isEnglish() ? 'Switch to Persian' : 'Switch to English' }}
-                  </div>
-                  <div
-                    class="w-2 h-2 bg-gray-900 transform rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2"
-                  ></div>
-                </div>
-              </button>
             </div>
           </div>
 
@@ -131,17 +120,9 @@ import {
               </a>
             }
             
-            <!-- Toggle Buttons for Mobile -->
-            <div class="flex items-center justify-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
+            <!-- Theme Toggle for Mobile -->
+            <div class="flex items-center justify-center pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
               <app-theme-toggle />
-              
-              <button
-                (click)="toggleLanguage()"
-                class="relative inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300 hover:scale-110 group"
-                type="button"
-              >
-                <span class="text-lg">{{ isEnglish() ? 'EN' : 'FA' }}</span>
-              </button>
             </div>
           </div>
         </div>
@@ -194,7 +175,6 @@ export class HeaderComponent {
   isMenuOpen = signal(false);
   isScrolled = signal(false);
   activeItem = signal(0);
-  isEnglish = signal(true);
 
   // Signal for navigation items
   navItems = signal([
@@ -206,23 +186,9 @@ export class HeaderComponent {
     { name: "Contact", href: "#contact" },
   ]);
 
-  constructor() {
-    // Track scroll position for header effects
-    effect(() => {
-      if (this.isScrolled()) {
-        document.body.style.setProperty('--header-height', '70px');
-      } else {
-        document.body.style.setProperty('--header-height', '80px');
-      }
-    });
-  }
-
   @HostListener("window:scroll")
   onWindowScroll() {
     this.isScrolled.set(window.scrollY > 20);
-    
-    // Update active item based on scroll position
-    this.updateActiveItemOnScroll();
   }
 
   toggleMenu() {
@@ -235,26 +201,5 @@ export class HeaderComponent {
 
   setActiveItem(index: number) {
     this.activeItem.set(index);
-  }
-
-  toggleLanguage() {
-    this.isEnglish.update(current => !current);
-    // Here you would typically implement language switching logic
-    console.log('Language toggled to:', this.isEnglish() ? 'English' : 'Persian');
-  }
-
-  private updateActiveItemOnScroll() {
-    // Simple implementation - you can enhance this with Intersection Observer
-    const sections = document.querySelectorAll('section[id]');
-    let currentActive = 0;
-    
-    sections.forEach((section, index) => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 100 && rect.bottom >= 100) {
-        currentActive = index;
-      }
-    });
-    
-    this.activeItem.set(currentActive);
   }
 }
