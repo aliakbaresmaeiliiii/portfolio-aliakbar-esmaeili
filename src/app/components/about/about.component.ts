@@ -1,17 +1,23 @@
 import { animate, style, transition, trigger } from "@angular/animations";
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { ScrollAnimationDirective } from "../../directives/scroll-animation.directive";
 
 @Component({
   selector: "app-about",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollAnimationDirective],
   template: `
     <section id="about" class="py-20 bg-dark-800/50">
       <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">
           <!-- Section Header -->
-          <div class="text-center mb-16">
+          <div
+            class="text-center mb-16"
+            appScrollAnimation
+            animationType="fade-in"
+            [animationDuration]="800"
+          >
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
               About <span class="gradient-text">Me</span>
             </h2>
@@ -25,17 +31,20 @@ import { Component } from "@angular/core";
             <div class="space-y-6">
               <div
                 class="glass-effect p-8 rounded-2xl hover:scale-105 transition-transform duration-300"
+                appScrollAnimation
+                animationType="slide-right"
+                [animationDuration]="800"
               >
                 <h3 class="text-2xl font-bold text-white mb-4">
                   Hello! I'm Aliakbar Esmaeili
                 </h3>
                 <p class="text-gray-300 leading-relaxed mb-4">
                   Senior Software Engineer with 10+ years of experience building
-              scalable Angular applications. Expert in designing reusable
-              components, optimizing front-end performance, and delivering
-              high-quality software that drives business impact. Passionate
-              about modern web technologies and continuously improving team
-              processes.
+                  scalable Angular applications. Expert in designing reusable
+                  components, optimizing front-end performance, and delivering
+                  high-quality software that drives business impact. Passionate
+                  about modern web technologies and continuously improving team
+                  processes.
                 </p>
                 <p class="text-gray-300 leading-relaxed mb-4">
                   I specialize in Angular (up to version 18), Node.js, NestJS,
@@ -57,6 +66,10 @@ import { Component } from "@angular/core";
               <!-- Skills Preview -->
               <div
                 class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300"
+                appScrollAnimation
+                animationType="slide-right"
+                [animationDuration]="800"
+                [animationDelay]="200"
               >
                 <h4 class="text-xl font-semibold text-white mb-4">What I Do</h4>
                 <div class="grid grid-cols-2 gap-4">
@@ -85,7 +98,10 @@ import { Component } from "@angular/core";
               <div
                 *ngFor="let stat of stats; let i = index"
                 class="glass-effect p-6 rounded-xl text-center card-hover"
-                [style.animation-delay]="i * 0.1 + 's'"
+                appScrollAnimation
+                animationType="zoom-in"
+                [animationDuration]="600"
+                [animationDelay]="i * 100"
               >
                 <div class="text-3xl mb-3">{{ stat.icon }}</div>
                 <div class="text-3xl font-bold text-white mb-1">

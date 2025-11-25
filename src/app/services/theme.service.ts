@@ -56,3 +56,4 @@ export class ThemeService {
   get currentTheme(): Theme {
     return this.themeSignal();
   }
+}

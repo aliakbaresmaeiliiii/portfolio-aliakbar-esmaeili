@@ -9,7 +9,12 @@ import { Component, signal } from "@angular/core";
       <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">
           <!-- Section Header -->
-          <div class="text-center mb-16">
+          <div
+            class="text-center mb-16"
+            appScrollAnimation
+            animationType="fade-in"
+            [animationDuration]="800"
+          >
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
               Featured <span class="gradient-text">Projects</span>
             </h2>
