@@ -83,17 +83,16 @@ import { CommonModule } from '@angular/common';
 export class ExperienceComponent {
   experiences = [
     {
-      position: 'Full Stack Developer',
+      position: 'Senior Software Engineer',
       company: 'Beed Education Adventures',
       location: 'Kuala Lumpur, Malaysia',
       duration: '06/2023 – Present',
-      description: 'Developing and updating projects to latest version of Angular and Node.js. Understanding design patterns and writing reusable, modular code.',
-      technologies: ['Angular 18', 'Node.js', 'Express.js (TypeScript)', 'Git', 'Scrum', 'MySQL', 'Docker', 'Firebase'],
+      description: 'Upgraded Angular and Node.js projects to latest versions, improving maintainability and performance.',
+      technologies: ['Angular 20', 'Angular Material', 'Node.js', 'Express.js', 'NestJS', 'Prisma', 'TypeScript', 'RxJS', 'Jest', 'Cypress'],
       achievements: [
-        'Engineered web solutions for optimal performance across diverse platforms',
-        'Applied design patterns and maintained codebase for reusability and modularity',
-        'Conducted thorough debugging sessions to rectify existing application errors',
-        'Effectively communicated complex technical issues and solutions to clients'
+        'Engineered reusable web components and optimized front-end for cross-platform performance',
+        'Debugged and resolved complex application issues, reducing client-reported bugs by 30%',
+        'Collaborated with clients and team members to design modular, scalable solutions'
       ]
     },
     {
@@ -101,71 +100,61 @@ export class ExperienceComponent {
       company: 'Guest Services',
       location: 'Istanbul, Turkey',
       duration: '02/2023 – 06/2023',
-      description: 'Focused on the development of an innovative online school platform. Adhering to Agile methodologies, particularly Scrum.',
-      technologies: ['Angular 14', '.NET', 'Git', 'NgRx', 'RxJS', 'Scrum', 'Jira', 'Ionic'],
+      description: 'Developed an innovative online school platform using Agile (Scrum) methodologies.',
+      technologies: ['Angular 14', 'Angular Material', '.NET', 'Git', 'Ngrx', 'RxJS', 'Scrum', 'Jira', 'Ionic'],
       achievements: [
-        'Developed innovative online school platform features',
-        'Adhered to Agile methodologies fostering transparency',
-        'Understood design patterns and wrote reusable, modular code',
-        'Demonstrated strong commitment to personal learning and development'
+        'Implemented reusable Angular components and maintained code quality across modules',
+        'Debugged and tested new features, improving application reliability',
+        'Mentored team members to adopt best practices in front-end development'
       ]
     },
     {
       position: 'Senior Front-End Developer',
-      company: 'Padidar Wellness and Fitness Services',
+      company: 'Padidar Wellness & Fitness Services',
       location: 'Tehran, Iran',
-      duration: '01/2022 - 02/2023',
-      description: 'Designing and developing new features and functionality for existing systems. Providing technical support for applications and infrastructure.',
-      technologies: ['Angular', '.NET', 'Azure', 'NgRx', 'RxJS', 'Scrum', 'Git', 'ag-grid'],
+      duration: '01/2022 – 02/2023',
+      description: 'Designed and implemented new features for existing Angular applications.',
+      technologies: ['Angular 10', 'Angular Material', '.NET', 'Azure', 'Ngrx', 'RxJS', 'Scrum', 'Git'],
       achievements: [
-        'Designed and developed new features for existing systems',
-        'Provided technical support for applications and infrastructure',
-        'Conducted code reviews to ensure best practices',
-        'Used ag-grid for advanced data grid functionality'
+        'Provided technical support and conducted code reviews to ensure high-quality standards',
+        'Used ag-grid for complex data visualization components'
       ]
     },
     {
       position: 'Front-End Developer',
       company: 'Winfiniti',
       location: 'Istanbul, Turkey',
-      duration: '07/2019 - 01/2022',
-      description: 'Architecture of ERP systems using OOP. Implemented Container Presenter pattern and used RXJS and Angular services for managing states.',
-      technologies: ['Angular Material', 'PrimeNG', 'Kendo UI', '.NET Core', 'Swagger'],
+      duration: '07/2019 – 01/2022',
+      description: 'Architected ERP systems using OOP and Container-Presenter patterns.',
+      technologies: ['Angular 8', 'Angular Material', 'PrimeNG', 'Kendo UI', '.NET Core', 'Swagger'],
       achievements: [
-        'Architected ERP systems using Object-Oriented Programming',
-        'Implemented Container Presenter pattern for better code organization',
-        'Used RXJS and Angular services for state management',
-        'Created full dynamic editable grid functionality'
+        'Managed state using RxJS and Angular services, improving maintainability',
+        'Developed interactive data grids with ag-grid'
       ]
     },
     {
       position: 'Front-End Developer',
       company: 'Navaco Information Technology',
       location: 'Tehran, Iran',
-      duration: '05/2018 - 06/2019',
-      description: 'Designed multi applications architecture. Implemented custom components according to UI/UX team designs. Created Angular admin panel application.',
-      technologies: ['Angular', 'iOS', 'Android', 'PWA', 'Material', 'NodeJS', 'Swagger'],
+      duration: '05/2018 – 06/2019',
+      description: 'Developed Angular admin panel for multi-application management using Material Design.',
+      technologies: ['Angular 7', 'Angular Material', 'iOS', 'Android', 'PWA', 'Node.js', 'Swagger'],
       achievements: [
-        'Designed multi applications architecture',
-        'Implemented custom components according to UI/UX designs',
-        'Created Angular admin panel application based on Material design',
-        'Constructed progressive web application with mobile camera features',
-        'Collaborated with native teams for web view integration'
+        'Implemented custom components according to the UI/UX team designs',
+        'Integrated web applications with native apps using WebView for seamless data exchange'
       ]
     },
     {
       position: 'Front-End Developer',
       company: 'Rayan Bahman Pardaz',
       location: 'Tehran, Iran',
-      duration: '04/2016 - 04/2018',
-      description: 'Worked in core team to construct Infrastructure for a large organization ERP system. Constructed Angular and web components for other teams.',
-      technologies: ['Angular', 'Java Spring', 'DevExtreme', 'Material', 'Nebular', 'Bootstrap'],
+      duration: '04/2016 – 04/2018',
+      description: 'Built ERP infrastructure and reusable Angular components for a large organization.',
+      technologies: ['Angular 4', 'Angular Material', 'Java Spring', 'DevExtreme', 'Bootstrap', 'Nebular'],
       achievements: [
-        'Worked in core team to construct ERP system infrastructure',
-        'Constructed Angular and web components for other teams',
-        'Participated with back-end and business teams for API design',
-        'Refactored large front-end application for modularity',
-        'Involved with various UI kits (DevExtreme, Bootstrap, Material, Nebular)'
+        'Collaborated with back-end teams on data models and APIs',
+        'Refactored large front-end codebase for modularity and reusability',
+        'Worked with UI libraries: DevExtreme, Material, Nebular, Bootstrap'
       ]
     }
   ];
