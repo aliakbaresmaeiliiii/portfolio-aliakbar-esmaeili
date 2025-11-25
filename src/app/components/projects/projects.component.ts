@@ -1,16 +1,22 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ScrollAnimationDirective } from "../../directives/scroll-animation.directive";
 
 @Component({
   selector: "app-projects",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollAnimationDirective],
   template: `
     <section id="projects" class="py-20">
       <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">
           <!-- Section Header -->
-          <div class="text-center mb-16">
+          <div
+            class="text-center mb-16"
+            appScrollAnimation
+            animationType="fade-in"
+            [animationDuration]="800"
+          >
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
               Featured <span class="gradient-text">Projects</span>
             </h2>
@@ -25,8 +31,12 @@ import { CommonModule } from "@angular/common";
           <!-- Projects Grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div
-              *ngFor="let project of projects"
+              *ngFor="let project of projects; let i = index"
               class="glass-effect rounded-xl overflow-hidden card-hover group"
+              appScrollAnimation
+              animationType="slide-up"
+              [animationDuration]="800"
+              [animationDelay]="i * 100"
             >
               <!-- Project Image -->
               <div
