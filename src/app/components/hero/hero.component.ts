@@ -1,22 +1,21 @@
 import {
-  Component,
-  OnInit,
-  OnDestroy,
-  HostListener,
-  Inject,
-  PLATFORM_ID,
-} from "@angular/core";
-import { isPlatformBrowser, CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import {
-  trigger,
-  state,
+  animate,
+  query,
+  stagger,
   style,
   transition,
-  animate,
-  stagger,
-  query,
+  trigger,
 } from "@angular/animations";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
+import {
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+} from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { ScrollService } from "../../services/scroll.service";
 
@@ -46,12 +45,12 @@ import { ScrollService } from "../../services/scroll.service";
         <div class="max-w-4xl mx-auto" [@fadeInStagger]>
           <!-- Profile Image with Dynamic Positioning -->
           <div
-            class="profile-image-container mb-8"
+            class="profile-image-container mb-4 pt-4"
             [style.transform]="imageTransform"
             [style.transition]="'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'"
           >
             <div
-              class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-500/30 hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20"
+              class="w-72 h-72 relative  mx-auto rounded-full overflow-hidden border-4 border-blue-500/30 hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20"
             >
               <img
                 src="assets/IMG_4810.JPG"
@@ -64,7 +63,7 @@ import { ScrollService } from "../../services/scroll.service";
 
           <!-- Main Heading -->
           <h1
-            class="text-5xl md:text-7xl font-bold mb-6"
+            class="text-2xl md:text-7xl font-bold mb-6"
             style="color: var(--text-primary)"
           >
             Hi, I'm
