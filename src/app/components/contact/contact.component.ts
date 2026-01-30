@@ -66,7 +66,7 @@ interface ContactForm {
                         href="tel:+989358200532"
                         class="text-blue-400 hover:text-blue-300 transition-colors duration-300"
                       >
-                        +98-9358200532
+                        +60-1151224149
                       </a>
                       <br />
                       <a
