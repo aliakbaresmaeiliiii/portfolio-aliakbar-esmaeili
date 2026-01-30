@@ -36,7 +36,7 @@ import { ScrollAnimationDirective } from "../../directives/scroll-animation.dire
                 [animationDuration]="800"
               >
                 <h3 class="text-2xl font-bold mb-4" style="color: var(--text-primary)">
-                  Hello! I'm Aliakbar Esmaeili
+                  Hi! I'm Aliakbar Esmaeili
                 </h3>
                 <p class="leading-relaxed mb-4" style="color: var(--text-secondary)">
                   Senior Software Engineer with 10+ years of experience building
