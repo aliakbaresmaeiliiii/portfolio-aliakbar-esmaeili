@@ -20,7 +20,6 @@ import { RouterModule } from "@angular/router";
           <p class="text-xl" style="color: var(--text-secondary)">Download my professional documents</p>
         </div>
 
-        <!-- Resume Preview Card -->
         <div
           class="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl"
         >
