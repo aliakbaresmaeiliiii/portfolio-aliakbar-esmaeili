@@ -97,8 +97,8 @@ export class ResumeComponent {
   downloadResume() {
     // Create a temporary anchor element to trigger download
     const link = document.createElement("a");
-    link.href = "assets/Aliakbar-Esmaeili-Resume2025.pdf";
-    link.download = "Aliakbar-Esmaeili-Resume2025.pdf";
+    link.href = "assets/Aliakbar-Esmaeili-Resume2026.pdf";
+    link.download = "Aliakbar-Esmaeili-Resume2026.pdf";
     link.target = "_blank";
 
     // Append to body, click, and remove
