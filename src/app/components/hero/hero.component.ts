@@ -67,7 +67,7 @@ import { ScrollService } from "../../services/scroll.service";
             style="color: var(--text-primary)"
           >
             Hi, I'm
-            <span class="gradient-text">Aliakbar Esmaeiliششششششششششششششششش</span>
+            <span class="gradient-text">Aliakbar Esmaeili</span>
           </h1>
 
           <!-- Subtitle -->
@@ -89,7 +89,7 @@ import { ScrollService } from "../../services/scroll.service";
             class="text-lg mb-12 max-w-2xl mx-auto leading-relaxed"
             style="color: var(--text-secondary)"
           >
-            Senior Software Engineer with 9+ years of experience building
+            Senior Software Engineer with 10+ years of experience building
             scalable Angular applications. Expert in designing reusable
             components, optimizing front-end performance, and delivering
             high-quality software that drives business impact. Passionate about
