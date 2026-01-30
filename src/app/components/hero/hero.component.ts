@@ -67,7 +67,7 @@ import { ScrollService } from "../../services/scroll.service";
             style="color: var(--text-primary)"
           >
             Hi, I'm
-            <span class="gradient-text">Aliakbar Esmaeili</span>
+            <span class="gradient-text">Aliakbar Esmaeiliiiiiiiiiiii</span>
           </h1>
 
           <!-- Subtitle -->

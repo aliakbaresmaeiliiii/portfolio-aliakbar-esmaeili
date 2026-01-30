@@ -1,8 +1,17 @@
 {
   "projects": {
     "aliakbar-portfolio": "aliakbar-portfolio",
-    "default": "aliakbar-portfolio"
+    "default": "my-portfolio2026",
+    "my-portfolio2026": "my-portfolio2026"
   },
-  "targets": {},
+  "targets": {
+    "aliakbar-portfolio": {
+      "hosting": {
+        "default": [
+          "my-portfolio"
+        ]
+      }
+    }
+  },
   "etags": {}
 }
