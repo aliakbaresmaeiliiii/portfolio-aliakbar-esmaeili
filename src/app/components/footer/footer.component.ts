@@ -62,8 +62,8 @@ import { CommonModule } from '@angular/common';
                 </p>
                 <p class="text-gray-400 flex items-center">
                   <span class="mr-2">📱</span>
-                  <a href="tel:+989358200532" class="hover:text-blue-400 transition-colors duration-300">
-                    +98-9358200532
+                  <a href="tel:+601151224149" class="hover:text-blue-400 transition-colors duration-300">
+                    +60-11-5122-4149
                   </a>
                 </p>
                 <p class="text-gray-400 flex items-center">
